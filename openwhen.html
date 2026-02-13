@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Til deg 💚</title>
+
+<!-- Handwritten style font -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0d3b2e, #1b6b52);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* 💚 Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    width: 15px;
+    height: 15px;
+    background: rgba(255,255,255,0.15);
+    transform: rotate(45deg);
+    animation: floatUp 10s linear infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+}
+
+.heart::before { top: -7px; left: 0; }
+.heart::after { left: -7px; top: 0; }
+
+@keyframes floatUp {
+    to { transform: translateY(-120vh) rotate(45deg); }
+}
+
+.slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.hidden { display: none; }
+
+h1 {
+    font-size: 2.8em;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1em;
+    background-color: #3fa374;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #56c893;
+    transform: scale(1.05);
+}
+
+/* 💌 ENVELOPES */
+
+.envelopes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 50px;
+    max-width: 1100px;
+    margin-top: 40px;
+}
+
+.envelope-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.envelope {
+    position: relative;
+    width: 260px;
+    height: 180px;
+    cursor: pointer;
+}
+
+/* Text written ON the envelope */
+.envelope-text {
+    position: absolute;
+    width: 100%;
+    top: 70px;
+    text-align: center;
+    font-size: 1.3em;
+    font-family: 'Dancing Script', cursive;
+    color: rgba(255,255,255,0.95);
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* Letter inside */
+.letter {
+    position: absolute;
+    width: 85%;
+    left: 7.5%;
+    height: 140px;
+    background: white;
+    color: #145c43;
+    padding: 15px;
+    border-radius: 10px;
+    top: 40px;
+    z-index: 1;
+    transition: transform 0.6s ease, z-index 0.3s ease;
+    font-size: 0.9em;
+}
+
+.body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #2e8b57;
+    border-radius: 12px;
+    z-index: 2;
+}
+
+.flap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #3fa374;
+    clip-path: polygon(0 0, 100% 0, 50% 55%);
+    transform-origin: top;
+    transition: transform 0.6s ease;
+    z-index: 3;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+.envelope.open .letter {
+    transform: translateY(-120px);
+    z-index: 5;
+}
+</style>
+</head>
+
+<body>
+
+<!-- floating hearts -->
+<div class="heart" style="left:15%; animation-duration:9s;"></div>
+<div class="heart" style="left:35%; animation-duration:12s;"></div>
+<div class="heart" style="left:65%; animation-duration:11s;"></div>
+<div class="heart" style="left:85%; animation-duration:10s;"></div>
+
+<!-- SLIDE 1 -->
+<div class="slide" id="slide1">
+    <h1>Happy Valentine’s Day 💚</h1>
+    <div style="font-size: 4em;">🦦💚🦦</div>
+    <p>
+        To små otere som holder hender.<br>
+        Akkurat som oss når du kommer hjem. 💚
+    </p>
+    <button onclick="nextSlide()">Åpne konvoluttene 💌</button>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide hidden" id="slide2">
+    <h1>Åpne når du... 💚</h1>
+
+    <div class="envelopes">
+
+        <!-- Savner meg -->
+        <div class="envelope-wrapper">
+            <div class="envelope" onclick="toggleEnvelope(this)">
+                <div class="letter">
+                    Jeg savner deg mer enn jeg klarer å formidle.
+                    Men jeg ville valgt denne avstanden
+                    bare for å få ha deg i livet mitt. 
+                </div>
+                <div class="body"></div>
+                <div class="flap"></div>
+                <div class="envelope-text">Når du savner meg 💚</div>
+            </div>
+        </div>
+
+        <!-- Du trenger å smile -->
+        <div class="envelope-wrapper">
+            <div class="envelope" onclick="toggleEnvelope(this)">
+                <div class="letter">
+                    Det var en gang, så ble det en korridor....
+			
+			Takk for meg...	
+			Jeg prøver igjen..
+			Hva er likheten mellom Plantasjen og Galtvort?
+			Du finner harry potter begge steder!	
+
+			Jeg gir opp...	
+
+                    
+                  
+                </div>
+                <div class="body"></div>
+                <div class="flap"></div>
+                <div class="envelope-text">Når du våkner offshore 🌊</div>
+            </div>
+        </div>
+
+        <!-- Ro -->
+        <div class="envelope-wrapper">
+            <div class="envelope" onclick="toggleEnvelope(this)">
+                <div class="letter">
+                    Trenger du ro så er jeg her.
+                     Snakk hull i hodet på meg eller ikke.
+
+                    Jeg er her. Håper bare jeg kan gjøre hverdagen litt bedre for deg. 
+			Vi har kanskje ikke kjent hverandre særlig lenge, men jeg gleder meg
+			til å bli kjent og mer komfortabel med deg. 
+                    
+                </div>
+                <div class="body"></div>
+                <div class="flap"></div>
+                <div class="envelope-text">Når du trenger ro 🌿</div>
+            </div>
+        </div>
+
+        <!-- Ønsket -->
+        <div class="envelope-wrapper">
+            <div class="envelope" onclick="toggleEnvelope(this)">
+                <div class="letter">
+                    Når du kommer hjem,
+                    har jeg planer for deg.
+                    Og de starter med en klem.
+                    Du slipper ikke unna. 
+                </div>
+                <div class="body"></div>
+                <div class="flap"></div>
+                <div class="envelope-text">Når du vil føle deg ønsket ❤️</div>
+            </div>
+        </div>
+
+        <!-- Omsorg -->
+        <div class="envelope-wrapper">
+            <div class="envelope" onclick="toggleEnvelope(this)">
+                <div class="letter">
+                    Du trenger ikke være sterk hele tiden.
+                    Ikke med meg.
+                    
+                    Hvis jeg var der nå,
+                    hadde jeg strøket hånden min rolig
+                    over ryggen din til skuldrene dine senket seg.
+                    
+                     Jeg ønsker å være en trygg person for deg.
+                </div>
+                <div class="body"></div>
+                <div class="flap"></div>
+                <div class="envelope-text">Når du trenger å bli tatt vare på 🤍</div>
+            </div>
+        </div>
+
+        <!-- Late night -->
+        <div class="envelope-wrapper">
+            <div class="envelope" onclick="toggleEnvelope(this)">
+                <div class="letter">
+                    Det er noe med natten.
+                    
+                    Alt blir roligere.
+                    Litt mer ærlig.
+                    
+                    Og det eneste jeg vil,
+                    er å ligge tett inntil deg.
+             
+                </div>
+                <div class="body"></div>
+                <div class="flap"></div>
+                <div class="envelope-text">Når natten føles litt for stille 🌙</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function nextSlide() {
+    document.getElementById("slide1").classList.add("hidden");
+    document.getElementById("slide2").classList.remove("hidden");
+}
+
+function toggleEnvelope(el) {
+    el.classList.toggle("open");
+}
+</script>
+
+</body>
+</html>
